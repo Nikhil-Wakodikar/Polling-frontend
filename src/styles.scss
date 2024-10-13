@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/css/style.css";
+
+body{
+    font-family:  "Open Sans", sans-serif;
+}
+
+.form-control,
+.form-select,
+.custom-select,
+.input-group-text,
+textarea {
+  box-shadow: none !important;
+}
+

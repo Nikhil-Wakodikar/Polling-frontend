@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="card-header bg-white">
+        <h5 class="card-title">Upload a file</h5>
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="my-3">
+                <div class="file-upload-wrapper">
+                    <p>Drop File here</p>
+                    <p>.doc, .docx, .pdf, .rtf (under 9 MB)</p>
+                    <input type="file" #fileInput (change)="onFileSelected($event)" hidden>
+                    <button type="button" class="btn btn-primary" (click)="fileInput.click()">Select File</button>
+                </div>
+            </div>
+            <!-- Preview Button, shown conditionally -->
+            <div *ngIf="uploadedFile">
+                <button type="button" class="btn btn-success" (click)="previewFile()">Preview</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,853 @@
+<div>
+    <!-- End Page Title -->
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="text-center mt-2">
+                <h5 class="card-title fs-4">Form 1</h5>
+            </div>
+            <div class="card-body">
+                <!-- Vertical Form -->
+                <form [formGroup]="pollForm">
+                    <pre>{{ pollForm.value | json }}</pre>
+                    <!-- 1 -->
+                    <div class="row mb-4">
+                        <label class="col-sm-4 col-form-label"><span class="fw-bold">1. </span>Name of
+                            Constituency</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" autocomplete="off"
+                                formControlName="nameOfConstituency" />
+                        </div>
+                    </div>
+
+                    <!-- 2 -->
+                    <div class="row mb-4">
+                        <label class="col-sm-4 col-form-label"><span class="fw-bold">2. </span> Date of poll</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model"
+                                    ngbDatepicker #d="ngbDatepicker" formControlName="dateOfPoll" />
+                                <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()"
+                                    type="button"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3 -->
+
+                    <ng-container formGroupName="numberAndNameofPollingStation">
+                        <label class="col-sm-4 col-form-label"><span class="fw-bold">3. </span>Number and Name of
+                            polling
+                            station</label>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-4 col-form-label ps-5">( i ) Government or quasi-government
+                                building</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" formControlName="governmentBuilding" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-4 col-form-label ps-5">( ii ) Private Building</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" formControlName="privateBuilding" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-5">
+                            <label class="col-sm-4 col-form-label ps-5">( iii ) Temporary structure</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" formControlName="temporaryStructure" />
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <!-- 4 -->
+
+                    <ng-container formGroupName="pollingOfficers">
+                        <div class="row mb-4">
+                            <label class="col-sm-4 col-form-label"><span class="fw-bold">4. </span>Number of Polling
+                                Officers
+                                recruited locally.</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" autocomplete="off"
+                                    formControlName="officersRecruitedLocally" />
+                            </div>
+                        </div>
+
+                        <!-- 5 -->
+                        <div class="row mb-4">
+                            <label class="col-sm-4 col-form-label"><span class="fw-bold">5. </span>Polling officer made
+                                in absence
+                                of duty appointed Polling Officers</label>
+                            <div class="col-sm-8 my-auto">
+                                <input type="text" class="form-control" autocomplete="off"
+                                    formControlName="officerInAbsence" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-4 col-form-label">Reason of such appointment (if any)</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" rows="2"
+                                    formControlName="reasonOfAppointment"></textarea>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <hr class="my-4" />
+                    <!-- 6 -->
+
+                    <ng-container formGroupName="electronicVotingMachine">
+                        <label class="mb-2"><span class="fw-bold">6. </span>Electronic Voting machine</label>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-4 col-form-label ps-5">( i ) Numbers of Control Units used</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" formControlName="controlUnitsUsed" />
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <label class="col-sm-4 col-form-label ps-5">( ii ) S. No(s) of Control Units</label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" formControlName="controlUnitsSerial" />
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <label class="col-sm-4 col-form-label ps-5">( iii ) Number of Ballot unit used</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" formControlName="ballotUnitsUsed" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-5">
+                            <label class="col-sm-4 col-form-label ps-5">( iv ) S. No(s) of Ballot unit</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" formControlName="ballotUnitsSerial" />
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <!-- 7 -->
+
+                    <ng-container formGroupName="paperSeals">
+                        <label class="mb-2"><span class="fw-bold">7. </span></label>
+                        <div class="row mb-4">
+                            <label class="col-sm-4 col-form-label ps-5">( i ) Number of Paper seals used</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" formControlName="sealsUsed" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-5">
+                            <label class="col-sm-4 col-form-label ps-5">( ii ) S. No(s) of Paper seals</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" formControlName="sealsSerial" />
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <!-- 7A -->
+                    <ng-container formGroupName="specialTags">
+                        <label class="mb-2"><span class="fw-bold">7A. </span></label>
+                        <div class="row mb-4">
+                            <label class="col-sm-4 col-form-label ps-5">( i ) Number of special tags supplied</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" formControlName="supplied" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-4 col-form-label ps-5">( ii ) S. No(s) of special tags supplied</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" formControlName="suppliedSerial" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-4 col-form-label ps-5">( iii ) Numbers of special tags used</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" formControlName="used" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-4 col-form-label ps-5">( iv ) S. No(s) special tags used</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" formControlName="usedSerial" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-5">
+                            <label class="col-sm-4 col-form-label ps-5">( v ) S. No(s) special tags return as
+                                unused</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" formControlName="unusedSerial" />
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <!-- 7B -->
+
+                    <hr class="my-4" />
+                    <ng-container formGroupName="vvpat">
+                        <label class="mb-2"><span class="fw-bold">7B. </span>Applicable in the polling
+                            station where VVPAT system is used</label>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-4 col-form-label ps-5">( i ) Number of Printers used</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" formControlName="printersUsed" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-5">
+                            <label class="col-sm-4 col-form-label ps-5">( ii ) S. No(s) of printers</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" formControlName="printersSerial" />
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <hr class="my-4" />
+
+                    <!-- 8 -->
+                    <ng-container formGroupName="pollingAgents">
+                        <div class="row mb-4">
+                            <label class="col-sm-6 col-form-label"><span class="fw-bold">8. </span>Number of candidate
+                                who had
+                                appointed polling agents at polling station</label>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" formControlName="totalCandidates" />
+                            </div>
+                        </div>
+
+                        <!-- 9 -->
+                        <label class="col-sm-6 col-form-label"><span class="fw-bold">9. </span>
+                        </label>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-6 col-form-label ps-5">( i ) Number of polling agent present at
+                                commencement of
+                                poll</label>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" formControlName="agentsPresentAtStart" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-6 col-form-label ps-5">( ii ) Number of polling agent who arrived
+                                late</label>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" formControlName="agentsLate" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-6 col-form-label ps-5">( iii ) Number of polling agent present at the
+                                close of the
+                                poll</label>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" formControlName="agentsPresentAtClose" />
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <hr class="my-4" />
+
+                    <!-- 10 -->
+                    <label class="form-label"><span class="fw-bold">10. </span></label>
+                    <ng-container formGroupName="pollingStationDetails">
+                        <div class="row mb-4">
+                            <label class="col-sm-6 col-form-label ps-5">( i ) Total number of voters assigned to the
+                                polling
+                                station</label>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" formControlName="totalVotersAssigned" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-6 col-form-label ps-5">( ii ) Number of electors allowed to vote
+                                according to marked
+                                copy of the electoral roll</label>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" formControlName="electorsAllowed" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-6 col-form-label ps-5">( iii ) Total number of electors as entered in
+                                the Register of
+                                Voters</label>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" formControlName="totalElectors" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-6 col-form-label ps-5">( iv ) Number of vote recorded as per the voting
+                                machine</label>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" formControlName="votesRecorded" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-6 col-form-label ps-5">( v ) Number of vote deciding not to record
+                                vote, if any</label>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" formControlName="nonRecordedVotes" />
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <hr class="my-4" />
+
+                    <ng-container formGroupName="numberOfElectorsVoted">
+                        <div class="row g-3 align-items-center">
+                            <!-- 11 -->
+                            <div class="col-12">
+                                <label class="form-label"><span class="fw-bold">11. </span>Number of electors who voted
+                                    -</label>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="col">
+                                    <label class="form-label">Men</label>
+                                    <input type="number" class="form-control" autocomplete="off"
+                                        formControlName="men" />
+                                </div>
+                                <span class="mx-2">+</span>
+                                <div class="col">
+                                    <label class="form-label">Women</label>
+                                    <input type="number" class="form-control" autocomplete="off"
+                                        formControlName="women" />
+                                </div>
+                                <span class="mx-2">+</span>
+                                <div class="col">
+                                    <label class="form-label">Third Gender</label>
+                                    <input type="number" class="form-control" autocomplete="off"
+                                        formControlName="thirdGender" />
+                                </div>
+                                <span class="mx-2">=</span>
+                                <div class="col">
+                                    <label class="form-label">Total</label>
+                                    <input type="number" class="form-control" autocomplete="off"
+                                        formControlName="total" />
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <hr class="my-4" />
+
+                    <!-- 12 -->
+
+                    <ng-container formGroupName="challengedVoteAllowed">
+                        <label class="mb-2"><span class="fw-bold">12. </span>Challenged vote</label>
+
+                        <div class="row mb-2">
+                            <div class="col-8">
+                                <div class="row align-items-center">
+                                    <div class="col-sm-6">
+                                        <div class="row mb-4">
+                                            <label class="col-sm-3 col-form-label">Number</label>
+                                            <div class="col-sm-6">
+                                                <input type="number" class="form-control" formControlName="number" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="row mb-4">
+                                            <label class="col-sm-3 col-form-label">Allowed</label>
+                                            <div class="col-sm-6">
+                                                <input type="number" class="form-control" formControlName="allowed" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <ng-container formGroupName="challengedRejected">
+                        <div class="row mb-2">
+                            <div class="col-8">
+                                <div class="row align-items-center">
+                                    <div class="col-sm-6">
+                                        <div class="row mb-4">
+                                            <label class="col-sm-3 col-form-label">Number</label>
+                                            <div class="col-sm-6">
+                                                <input type="number" class="form-control" formControlName="number" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="row mb-4">
+                                            <label class="col-sm-3 col-form-label">Rejected</label>
+                                            <div class="col-sm-6">
+                                                <input type="number" class="form-control" formControlName="rejected" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <div class="row mb-5">
+                        <label class="col-sm-6 col-form-label">Amount of forfeited Rs</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" formControlName="amountOfForfeited" />
+                        </div>
+                    </div>
+
+                    <!-- 13 -->
+                    <div class="row mb-4">
+                        <label class="col-sm-6 col-form-label"><span class="fw-bold">13. </span>Number of person who
+                            have voted
+                            on production of Election Duty Certificate (EDC)</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" formControlName="numberofEDCVoters" />
+                        </div>
+                    </div>
+
+                    <!-- 13A -->
+                    <div class="row mb-4">
+                        <label class="col-sm-6 col-form-label"><span class="fw-bold">13A. </span>Number of overseas
+                            electors who
+                            voted</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" formControlName="numberofOverseasVoters" />
+                        </div>
+                    </div>
+
+                    <!-- 14 -->
+                    <div class="row mb-4">
+                        <label class="col-sm-6 col-form-label"><span class="fw-bold">14. </span>Number of electors who
+                            voted
+                            with the help of companions</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" formControlName="numberofVotersWithCompanion" />
+                        </div>
+                    </div>
+
+                    <!-- 15 -->
+                    <div class="row mb-4">
+                        <label class="col-sm-6 col-form-label"><span class="fw-bold">15. </span>Number of voters who
+                            cast
+                            through proxy</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" formControlName="numberofProxyVoters" />
+                        </div>
+                    </div>
+
+                    <!-- 16 -->
+                    <div class="row mb-4">
+                        <label class="col-sm-6 col-form-label"><span class="fw-bold">16. </span>Number of tendered
+                            votes</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" formControlName="numberOfTenderdVote" />
+                        </div>
+                    </div>
+
+                    <hr class="my-4" />
+                    <!-- 17 -->
+                    <ng-container formGroupName="ageDeclaration">
+                        <label class="mb-2"><span class="fw-bold">17. </span>Number of electors</label>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-6 col-form-label ps-5">( a ) From whom declaration as to their age
+                                obtained</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" formControlName="obtained" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-5">
+                            <label class="col-sm-6 col-form-label ps-5">( b ) who refuse to give such declaration
+                            </label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" formControlName="refuse" />
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <!-- 18 -->
+                    <div class="row mb-5">
+                        <label class="col-sm-6 col-form-label"><span class="fw-bold">18. </span>Whether it was
+                            neccessary to
+                            adjourn the poll and if so, the reason for such adjournment</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" formControlName="reasonForPollAdjournment" />
+                        </div>
+                    </div>
+
+                    <!-- 19 -->
+
+                    <div class="row mb-4">
+                        <label class="col-sm-12 col-form-label"><span class="fw-bold">19. </span>Number of votes cast in
+                            every
+                            two hour - From 7 a.m. To 9 a.m.</label>
+                        <ng-container formArrayName="votesCast">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr *ngFor="
+                        let visitor of votesCastFormArray.controls;
+                        let i = index
+                      " [formGroupName]="i">
+                                            <th scope="row">{{ i + 1 }}</th>
+                                            <td>{{ visitor.get("timeRange")?.value }}</td>
+                                            <td>
+                                                <div>
+                                                    <input type="number" class="form-control" formControlName="votes" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-link">edit</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </ng-container>
+                        <div class="col-sm-12">
+                            <p>
+                                ( Neccessary changes may be made depending on the hours fixed
+                                for commencement and close of poll )
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 19B -->
+                    <div class="row mb-5">
+                        <label class="col-sm-12 col-form-label"><span class="fw-bold">18B. </span>Details of visitors at
+                            polling
+                            stations as per Visit Sheet</label>
+                        <ng-container formArrayName="detailsOfVisitor">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th scope="col" rowspan="2">S. No.</th>
+                                            <th scope="col" rowspan="2">
+                                                Name & Designation of the Officer Visiting
+                                                <br />(Observer/DEO/RO/ARO/Sector Magistrate/Zonal
+                                                Magistrate/Patrolling Magistrate)
+                                            </th>
+                                            <th scope="col" rowspan="2">Time of Visit</th>
+                                            <th scope="col" rowspan="2">
+                                                Brief Description of Polling Process (Peaceful/Incident,
+                                                If any)
+                                            </th>
+                                            <th scope="col" colspan="2" class="text-center">
+                                                Number of Votes Polled Till the Time of Visit
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">As per Form 17</th>
+                                            <th scope="col">As per the EVM</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="
+                    let visitor of visitorsDetailsFormArray.controls;
+                    let i = index
+                  " [formGroupName]="i">
+                                            <td class="px-2 py-3">{{i+1}}</td>
+                                            <td class="px-2 py-3">{{ visitor.get("officerName")?.value }}</td>
+                                            <td class="px-2 py-3">{{ visitor.get("visitTime")?.value }}</td>
+                                            <td class="px-2 py-3">{{ visitor.get("description")?.value }}</td>
+                                            <td class="px-2 py-3">{{ visitor.get("votesPolledForm17")?.value }}</td>
+                                            <td class="px-2 py-3">{{ visitor.get("votesPolledEVM")?.value }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </ng-container>
+                    </div>
+
+                    <!-- 20 -->
+                    <label class="form-label"><span class="fw-bold">20. </span></label>
+
+                    <div class="row mb-4">
+                        <label class="col-sm-6 col-form-label ps-5">(a) Number of slips issued at the closing hour of
+                            the poll to
+                            electors standing in the queue:</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" formControlName="slipsIssued" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-5">
+                        <label class="col-sm-6 col-form-label ps-5">(b) Time at which poll finally closed after the last
+                            such elector
+                            cast his/her vote:</label>
+                        <div class="col-sm-6">
+                            <input type="time" class="form-control" formControlName="closingTime" />
+                        </div>
+                    </div>
+
+                    <!-- 21 -->
+
+                    <ng-container formGroupName="electoralOffences">
+
+                        <label class="form-label mb-3"><span class="fw-bold">21. </span>Electoral offences with details.
+                            Number of cases of -</label>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-6 col-form-label ps-5">(a) Canvassing within one hundred meters of the
+                                polling
+                                station.</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" formControlName="canvassing" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-6 col-form-label ps-5">(b) lmpersonation of voters</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" formControlName="impersonation" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-6 col-form-label ps-5">(c) Fraudulent defacing, destroying or removal
+                                of the lost of
+                                other documents at the polling station</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" formControlName="fraudulentDefacing" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-6 col-form-label ps-5">(d) Bribing of voters :</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" formControlName="bribing" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-6 col-form-label ps-5">(e) lntimidation of voters and others
+                                persons:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" formControlName="intimidation" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-5">
+                            <label class="col-sm-6 col-form-label ps-5">(f) Booth capturing:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" formControlName="boothCapturing" />
+                            </div>
+                        </div>
+                    </ng-container>
+
+
+
+                    <!-- 22 -->
+
+                    <ng-container formGroupName="pollInterruptions">
+
+                        <div class="row mb-5">
+                            <label class="col-sm-6 col-form-label"><span class="fw-bold">22. </span>Was the poll interrupted
+                            or
+                            obstructed by -</label>
+
+                        <div class="col-sm-6 row g-2">
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="riot" formControlName="riot"/>
+                                    <label class="form-check-label" for="riot"> ( 1 ) Riot </label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="openViolence" formControlName="openViolence"/>
+                                    <label class="form-check-label" for="openViolence"> ( 2 ) Open violence </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="naturalCalamity" formControlName="naturalCalamity" />
+                                    <label class="form-check-label" for="naturalCalamity">
+                                        ( 3 ) Natural calamity
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="boothCapturing" formControlName="boothCapturing" />
+                                    <label class="form-check-label" for="boothCapturing">
+                                        ( 4 ) Booth capturing
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="votingMachineFailure" formControlName="votingMachineFailure" />
+                                    <label class="form-check-label" for="votingMachineFailure">
+                                        ( 5 ) Failure of voting machine
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="votingMachineFailure" formControlName="votingMachineFailure" />
+                                    <label class="form-check-label" for="votingMachineFailure">
+                                        ( 6 ) Any other cause
+                                    </label>
+                                </div>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" formControlName="other"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+
+                    <hr class="my-4" />
+
+                    <ng-container formGroupName="votingMachineIssues">
+
+                        <label class="card-title fs-5">Please give details of the above</label>
+                        <!-- 23 -->
+                        
+                        <div class="row">
+                            <label class="form-label mb-3"><span class="fw-bold">23. </span>Was the poll vitiated by any
+                                voting machine used at the polling station having been -</label>
+                            </div>
+                            
+                            <div class="row mb-4">
+                                <label class="col-sm-6 col-form-label ps-5">(a) Unlawfully taken out of the custody of the
+                                    Presiding
+                                    Officer:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" formControlName="unlawfullyTaken"/>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-4">
+                                    <label class="col-sm-6 col-form-label ps-5">(b) Accidentally or intentionally lost or
+                                        destroyed:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" formControlName="lostOrDestroyed"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row mb-5">
+                                        <label class="col-sm-6 col-form-label ps-5">(c) Damaged or tampered with: Please give
+                                            details.</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" formControlName="damagedOrTampered"/>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+
+                    <!-- 24 -->
+                    <div class="row mb-5">
+                        <label class="col-sm-6 col-form-label"><span class="fw-bold">24. </span>Serious complaints, if
+                            any, made
+                            by the cand1date/agents:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" formControlName="complaints"/>
+                        </div>
+                    </div>
+
+                    <!-- 25 -->
+                    <div class="row mb-5">
+                        <label class="col-sm-6 col-form-label"><span class="fw-bold">25. </span>Number of cases of
+                            breach of law
+                            and order:</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" formControlName="breachOfLawCases"/>
+                        </div>
+                    </div>
+
+                    <!-- 26 -->
+                    <div class="row mb-5">
+                        <label class="col-sm-6 col-form-label"><span class="fw-bold">26. </span>Report of mistakes and
+                            irregularities committed, if any, at the polling station:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" formControlName="irregularitiesReport"/>
+                        </div>
+                    </div>
+
+                    <!-- 27 -->
+                    <div class="row mb-5">
+                        <label class="col-sm-6 col-form-label"><span class="fw-bold">27. </span>Whether the declarations
+                            have
+                            been made before the commencement of the poll and if necessary
+                            during the course of poll when a new voting machine is used and at
+                            the end of the poll as necessary</label>
+                        <div class="col-sm-6 my-auto">
+                            <input type="text" class="form-control" formControlName="declarationsMade"/>
+                        </div>
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <div class="row mb-2">
+                        <div class="row mb-4">
+                            <label class="col-sm-2 col-form-label">Place :</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" autocomplete="off" formControlName="place"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <label class="col-sm-2 col-form-label">Date :</label>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model"
+                                    ngbDatepicker #d="ngbDatepicker"formControlName="date"/>
+                                <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()"
+                                    type="button"></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- Vertical Form -->
+
+                <div>
+                    <button type="submit" class="btn btn-primary me-2">Submit</button>
+                    <button type="reset" class="btn btn-secondary" routerLink="/dashboard">
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row mb-4">
+                        <div class="col-6">
+                            <label class="form-label">Number of Ballot unit used</label>
+                            <input type="number" class="form-control" autocomplete="off">
+
+                        </div>
+                        <div class="col-6 mb-4">
+                            <label class="form-label">Serial numbers of Ballot unit</label>
+                            <input type="text" class="form-control" autocomplete="off">
+                        </div>
+
+                        <div class="col-6">
+                        </div>
+                        <div class="col-6 mb-4">
+                            <input type="text" class="form-control" autocomplete="off">
+                        </div>
+                        <div class="col-6">
+                        </div>
+                        <div class="col-6 mb-4">
+                            <input type="text" class="form-control" autocomplete="off">
+                        </div>
+                    </div> -->
