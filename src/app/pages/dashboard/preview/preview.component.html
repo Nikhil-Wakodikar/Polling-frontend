@@ -7,8 +7,7 @@
             </div>
             <div class="card-body">
                 <!-- Vertical Form -->
-                <form [formGroup]="pollForm">
-                    <pre>{{ pollForm.value | json }}</pre>
+                <form [formGroup]="pollForm" (ngSubmit)="submitPollingDetails()">
                     <!-- 1 -->
                     <div class="row mb-4">
                         <label class="col-sm-4 col-form-label"><span class="fw-bold">1. </span>Name of
@@ -24,8 +23,8 @@
                         <label class="col-sm-4 col-form-label"><span class="fw-bold">2. </span> Date of poll</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model"
-                                    ngbDatepicker #d="ngbDatepicker" formControlName="dateOfPoll" />
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker
+                                    #d="ngbDatepicker" formControlName="dateOfPoll" />
                                 <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()"
                                     type="button"></button>
                             </div>
@@ -70,7 +69,7 @@
                                 Officers
                                 recruited locally.</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" autocomplete="off"
+                                <input type="text" class="form-control" autocomplete="off"
                                     formControlName="officersRecruitedLocally" />
                             </div>
                         </div>
@@ -153,28 +152,28 @@
                         <div class="row mb-4">
                             <label class="col-sm-4 col-form-label ps-5">( i ) Number of special tags supplied</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" formControlName="supplied" />
+                                <input type="text" class="form-control" formControlName="supplied" />
                             </div>
                         </div>
 
                         <div class="row mb-4">
                             <label class="col-sm-4 col-form-label ps-5">( ii ) S. No(s) of special tags supplied</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" formControlName="suppliedSerial" />
+                                <input type="text" class="form-control" formControlName="suppliedSerial" />
                             </div>
                         </div>
 
                         <div class="row mb-4">
                             <label class="col-sm-4 col-form-label ps-5">( iii ) Numbers of special tags used</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" formControlName="used" />
+                                <input type="text" class="form-control" formControlName="used" />
                             </div>
                         </div>
 
                         <div class="row mb-4">
                             <label class="col-sm-4 col-form-label ps-5">( iv ) S. No(s) special tags used</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" formControlName="usedSerial" />
+                                <input type="text" class="form-control" formControlName="usedSerial" />
                             </div>
                         </div>
 
@@ -182,7 +181,7 @@
                             <label class="col-sm-4 col-form-label ps-5">( v ) S. No(s) special tags return as
                                 unused</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" formControlName="unusedSerial" />
+                                <input type="text" class="form-control" formControlName="unusedSerial" />
                             </div>
                         </div>
                     </ng-container>
@@ -218,7 +217,7 @@
                                 who had
                                 appointed polling agents at polling station</label>
                             <div class="col-sm-6">
-                                <input type="number" class="form-control" formControlName="totalCandidates" />
+                                <input type="text" class="form-control" formControlName="totalCandidates" />
                             </div>
                         </div>
 
@@ -231,7 +230,7 @@
                                 commencement of
                                 poll</label>
                             <div class="col-sm-6">
-                                <input type="number" class="form-control" formControlName="agentsPresentAtStart" />
+                                <input type="text" class="form-control" formControlName="agentsPresentAtStart" />
                             </div>
                         </div>
 
@@ -239,7 +238,7 @@
                             <label class="col-sm-6 col-form-label ps-5">( ii ) Number of polling agent who arrived
                                 late</label>
                             <div class="col-sm-6">
-                                <input type="number" class="form-control" formControlName="agentsLate" />
+                                <input type="text" class="form-control" formControlName="agentsLate" />
                             </div>
                         </div>
 
@@ -248,7 +247,7 @@
                                 close of the
                                 poll</label>
                             <div class="col-sm-6">
-                                <input type="number" class="form-control" formControlName="agentsPresentAtClose" />
+                                <input type="text" class="form-control" formControlName="agentsPresentAtClose" />
                             </div>
                         </div>
                     </ng-container>
@@ -263,7 +262,7 @@
                                 polling
                                 station</label>
                             <div class="col-sm-6">
-                                <input type="number" class="form-control" formControlName="totalVotersAssigned" />
+                                <input type="text" class="form-control" formControlName="totalVotersAssigned" />
                             </div>
                         </div>
 
@@ -272,7 +271,7 @@
                                 according to marked
                                 copy of the electoral roll</label>
                             <div class="col-sm-6">
-                                <input type="number" class="form-control" formControlName="electorsAllowed" />
+                                <input type="text" class="form-control" formControlName="electorsAllowed" />
                             </div>
                         </div>
 
@@ -281,7 +280,7 @@
                                 the Register of
                                 Voters</label>
                             <div class="col-sm-6">
-                                <input type="number" class="form-control" formControlName="totalElectors" />
+                                <input type="text" class="form-control" formControlName="totalElectors" />
                             </div>
                         </div>
 
@@ -289,7 +288,7 @@
                             <label class="col-sm-6 col-form-label ps-5">( iv ) Number of vote recorded as per the voting
                                 machine</label>
                             <div class="col-sm-6">
-                                <input type="number" class="form-control" formControlName="votesRecorded" />
+                                <input type="text" class="form-control" formControlName="votesRecorded" />
                             </div>
                         </div>
 
@@ -297,7 +296,7 @@
                             <label class="col-sm-6 col-form-label ps-5">( v ) Number of vote deciding not to record
                                 vote, if any</label>
                             <div class="col-sm-6">
-                                <input type="number" class="form-control" formControlName="nonRecordedVotes" />
+                                <input type="text" class="form-control" formControlName="nonRecordedVotes" />
                             </div>
                         </div>
                     </ng-container>
@@ -315,25 +314,24 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="col">
                                     <label class="form-label">Men</label>
-                                    <input type="number" class="form-control" autocomplete="off"
-                                        formControlName="men" />
+                                    <input type="text" class="form-control" autocomplete="off" formControlName="men" />
                                 </div>
                                 <span class="mx-2">+</span>
                                 <div class="col">
                                     <label class="form-label">Women</label>
-                                    <input type="number" class="form-control" autocomplete="off"
+                                    <input type="text" class="form-control" autocomplete="off"
                                         formControlName="women" />
                                 </div>
                                 <span class="mx-2">+</span>
                                 <div class="col">
                                     <label class="form-label">Third Gender</label>
-                                    <input type="number" class="form-control" autocomplete="off"
+                                    <input type="text" class="form-control" autocomplete="off"
                                         formControlName="thirdGender" />
                                 </div>
                                 <span class="mx-2">=</span>
                                 <div class="col">
                                     <label class="form-label">Total</label>
-                                    <input type="number" class="form-control" autocomplete="off"
+                                    <input type="text" class="form-control" autocomplete="off"
                                         formControlName="total" />
                                 </div>
                             </div>
@@ -354,7 +352,7 @@
                                         <div class="row mb-4">
                                             <label class="col-sm-3 col-form-label">Number</label>
                                             <div class="col-sm-6">
-                                                <input type="number" class="form-control" formControlName="number" />
+                                                <input type="text" class="form-control" formControlName="number" />
                                             </div>
                                         </div>
                                     </div>
@@ -363,7 +361,7 @@
                                         <div class="row mb-4">
                                             <label class="col-sm-3 col-form-label">Allowed</label>
                                             <div class="col-sm-6">
-                                                <input type="number" class="form-control" formControlName="allowed" />
+                                                <input type="text" class="form-control" formControlName="allowed" />
                                             </div>
                                         </div>
                                     </div>
@@ -380,7 +378,7 @@
                                         <div class="row mb-4">
                                             <label class="col-sm-3 col-form-label">Number</label>
                                             <div class="col-sm-6">
-                                                <input type="number" class="form-control" formControlName="number" />
+                                                <input type="text" class="form-control" formControlName="number" />
                                             </div>
                                         </div>
                                     </div>
@@ -389,7 +387,7 @@
                                         <div class="row mb-4">
                                             <label class="col-sm-3 col-form-label">Rejected</label>
                                             <div class="col-sm-6">
-                                                <input type="number" class="form-control" formControlName="rejected" />
+                                                <input type="text" class="form-control" formControlName="rejected" />
                                             </div>
                                         </div>
                                     </div>
@@ -401,7 +399,7 @@
                     <div class="row mb-5">
                         <label class="col-sm-6 col-form-label">Amount of forfeited Rs</label>
                         <div class="col-sm-6">
-                            <input type="number" class="form-control" formControlName="amountOfForfeited" />
+                            <input type="text" class="form-control" formControlName="amountOfForfeited" />
                         </div>
                     </div>
 
@@ -411,7 +409,7 @@
                             have voted
                             on production of Election Duty Certificate (EDC)</label>
                         <div class="col-sm-6">
-                            <input type="number" class="form-control" formControlName="numberofEDCVoters" />
+                            <input type="text" class="form-control" formControlName="numberofEDCVoters" />
                         </div>
                     </div>
 
@@ -421,7 +419,7 @@
                             electors who
                             voted</label>
                         <div class="col-sm-6">
-                            <input type="number" class="form-control" formControlName="numberofOverseasVoters" />
+                            <input type="text" class="form-control" formControlName="numberofOverseasVoters" />
                         </div>
                     </div>
 
@@ -431,7 +429,7 @@
                             voted
                             with the help of companions</label>
                         <div class="col-sm-6">
-                            <input type="number" class="form-control" formControlName="numberofVotersWithCompanion" />
+                            <input type="text" class="form-control" formControlName="numberofVotersWithCompanion" />
                         </div>
                     </div>
 
@@ -441,7 +439,7 @@
                             cast
                             through proxy</label>
                         <div class="col-sm-6">
-                            <input type="number" class="form-control" formControlName="numberofProxyVoters" />
+                            <input type="text" class="form-control" formControlName="numberofProxyVoters" />
                         </div>
                     </div>
 
@@ -450,7 +448,7 @@
                         <label class="col-sm-6 col-form-label"><span class="fw-bold">16. </span>Number of tendered
                             votes</label>
                         <div class="col-sm-6">
-                            <input type="number" class="form-control" formControlName="numberOfTenderdVote" />
+                            <input type="text" class="form-control" formControlName="numberOfTenderdVote" />
                         </div>
                     </div>
 
@@ -504,7 +502,7 @@
                                             <td>{{ visitor.get("timeRange")?.value }}</td>
                                             <td>
                                                 <div>
-                                                    <input type="number" class="form-control" formControlName="votes" />
+                                                    <input type="text" class="form-control" formControlName="votes" />
                                                 </div>
                                             </td>
                                             <td>
@@ -579,7 +577,7 @@
                             the poll to
                             electors standing in the queue:</label>
                         <div class="col-sm-6">
-                            <input type="number" class="form-control" formControlName="slipsIssued" />
+                            <input type="text" class="form-control" formControlName="slipsIssued" />
                         </div>
                     </div>
 
@@ -654,66 +652,73 @@
                     <ng-container formGroupName="pollInterruptions">
 
                         <div class="row mb-5">
-                            <label class="col-sm-6 col-form-label"><span class="fw-bold">22. </span>Was the poll interrupted
-                            or
-                            obstructed by -</label>
+                            <label class="col-sm-6 col-form-label"><span class="fw-bold">22. </span>Was the poll
+                                interrupted
+                                or
+                                obstructed by -</label>
 
-                        <div class="col-sm-6 row g-2">
-                            <div class="col-12">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="riot" formControlName="riot"/>
-                                    <label class="form-check-label" for="riot"> ( 1 ) Riot </label>
+                            <div class="col-sm-6 row g-2">
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="riot"
+                                            formControlName="riot" />
+                                        <label class="form-check-label" for="riot"> ( 1 ) Riot </label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-12">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="openViolence" formControlName="openViolence"/>
-                                    <label class="form-check-label" for="openViolence"> ( 2 ) Open violence </label>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="openViolence"
+                                            formControlName="openViolence" />
+                                        <label class="form-check-label" for="openViolence"> ( 2 ) Open violence </label>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="col-12">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="naturalCalamity" formControlName="naturalCalamity" />
-                                    <label class="form-check-label" for="naturalCalamity">
-                                        ( 3 ) Natural calamity
-                                    </label>
+
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="naturalCalamity"
+                                            formControlName="naturalCalamity" />
+                                        <label class="form-check-label" for="naturalCalamity">
+                                            ( 3 ) Natural calamity
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="col-12">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="boothCapturing" formControlName="boothCapturing" />
-                                    <label class="form-check-label" for="boothCapturing">
-                                        ( 4 ) Booth capturing
-                                    </label>
+
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="boothCapturing"
+                                            formControlName="boothCapturing" />
+                                        <label class="form-check-label" for="boothCapturing">
+                                            ( 4 ) Booth capturing
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="col-12">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="votingMachineFailure" formControlName="votingMachineFailure" />
-                                    <label class="form-check-label" for="votingMachineFailure">
-                                        ( 5 ) Failure of voting machine
-                                    </label>
+
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="votingMachineFailure"
+                                            formControlName="votingMachineFailure" />
+                                        <label class="form-check-label" for="votingMachineFailure">
+                                            ( 5 ) Failure of voting machine
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="col-12">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="votingMachineFailure" formControlName="votingMachineFailure" />
-                                    <label class="form-check-label" for="votingMachineFailure">
-                                        ( 6 ) Any other cause
-                                    </label>
-                                </div>
-                                <div class="col-sm-12">
-                                    <input type="text" class="form-control" formControlName="other"/>
+
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="votingMachineFailure"
+                                            formControlName="votingMachineFailure" />
+                                        <label class="form-check-label" for="votingMachineFailure">
+                                            ( 6 ) Any other cause
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" formControlName="other" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </ng-container>
+                    </ng-container>
 
                     <hr class="my-4" />
 
@@ -721,37 +726,37 @@
 
                         <label class="card-title fs-5">Please give details of the above</label>
                         <!-- 23 -->
-                        
+
                         <div class="row">
                             <label class="form-label mb-3"><span class="fw-bold">23. </span>Was the poll vitiated by any
                                 voting machine used at the polling station having been -</label>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-6 col-form-label ps-5">(a) Unlawfully taken out of the custody of the
+                                Presiding
+                                Officer:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" formControlName="unlawfullyTaken" />
                             </div>
-                            
-                            <div class="row mb-4">
-                                <label class="col-sm-6 col-form-label ps-5">(a) Unlawfully taken out of the custody of the
-                                    Presiding
-                                    Officer:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" formControlName="unlawfullyTaken"/>
-                                    </div>
-                                </div>
-                                
-                                <div class="row mb-4">
-                                    <label class="col-sm-6 col-form-label ps-5">(b) Accidentally or intentionally lost or
-                                        destroyed:</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" formControlName="lostOrDestroyed"/>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row mb-5">
-                                        <label class="col-sm-6 col-form-label ps-5">(c) Damaged or tampered with: Please give
-                                            details.</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" formControlName="damagedOrTampered"/>
-                                            </div>
-                                        </div>
-                                    </ng-container>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-sm-6 col-form-label ps-5">(b) Accidentally or intentionally lost or
+                                destroyed:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" formControlName="lostOrDestroyed" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-5">
+                            <label class="col-sm-6 col-form-label ps-5">(c) Damaged or tampered with: Please give
+                                details.</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" formControlName="damagedOrTampered" />
+                            </div>
+                        </div>
+                    </ng-container>
 
                     <!-- 24 -->
                     <div class="row mb-5">
@@ -759,7 +764,7 @@
                             any, made
                             by the cand1date/agents:</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" formControlName="complaints"/>
+                            <input type="text" class="form-control" formControlName="complaints" />
                         </div>
                     </div>
 
@@ -769,7 +774,7 @@
                             breach of law
                             and order:</label>
                         <div class="col-sm-6">
-                            <input type="number" class="form-control" formControlName="breachOfLawCases"/>
+                            <input type="text" class="form-control" formControlName="breachOfLawCases" />
                         </div>
                     </div>
 
@@ -778,7 +783,7 @@
                         <label class="col-sm-6 col-form-label"><span class="fw-bold">26. </span>Report of mistakes and
                             irregularities committed, if any, at the polling station:</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" formControlName="irregularitiesReport"/>
+                            <input type="text" class="form-control" formControlName="irregularitiesReport" />
                         </div>
                     </div>
 
@@ -790,7 +795,7 @@
                             during the course of poll when a new voting machine is used and at
                             the end of the poll as necessary</label>
                         <div class="col-sm-6 my-auto">
-                            <input type="text" class="form-control" formControlName="declarationsMade"/>
+                            <input type="text" class="form-control" formControlName="declarationsMade" />
                         </div>
                     </div>
 
@@ -800,30 +805,37 @@
                         <div class="row mb-4">
                             <label class="col-sm-2 col-form-label">Place :</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" autocomplete="off" formControlName="place"/>
+                                <input type="text" class="form-control" autocomplete="off" formControlName="place" />
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-5">
-                        <label class="col-sm-2 col-form-label">Date :</label>
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model"
-                                    ngbDatepicker #d="ngbDatepicker"formControlName="date"/>
-                                <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()"
-                                    type="button"></button>
+
+                    <div class="row mb-2">
+                        <div class="row mb-4">
+                            <label class="col-sm-2 col-form-label">Place :</label>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker
+                                        #d="ngbDatepicker" formControlName="date" />
+                                    <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()"
+                                        type="button"></button>
+                                </div>
                             </div>
                         </div>
+                    </div>
+
+                
+                    <!-- Vertical Form -->
+
+                    <div>
+                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button type="button" class="btn btn-dark me-2" (click)="patchFormValue()">Auto fill</button>
+
+                        <button type="reset" class="btn btn-secondary" routerLink="/dashboard">
+                            Reset
+                        </button>
                     </div>
                 </form>
-                <!-- Vertical Form -->
-
-                <div>
-                    <button type="submit" class="btn btn-primary me-2">Submit</button>
-                    <button type="reset" class="btn btn-secondary" routerLink="/dashboard">
-                        Reset
-                    </button>
-                </div>
             </div>
         </div>
     </div>
@@ -832,7 +844,7 @@
 <!-- <div class="row mb-4">
                         <div class="col-6">
                             <label class="form-label">Number of Ballot unit used</label>
-                            <input type="number" class="form-control" autocomplete="off">
+                            <input type="text" class="form-control" autocomplete="off">
 
                         </div>
                         <div class="col-6 mb-4">

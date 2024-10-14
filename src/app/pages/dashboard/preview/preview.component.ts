@@ -1,7 +1,139 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { HttpService } from 'src/app/services/http/http.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
+const pollDetails = {
+  "nameOfConstituency": "District 1",
+  "dateOfPoll": {
+    "year": 2024,
+    "month": 10,
+    "day": 11
+  },
+  "numberAndNameofPollingStation": {
+    "governmentBuilding": "Central Hall",
+    "privateBuilding": "None",
+    "temporaryStructure": "Tent A"
+  },
+  "pollingOfficers": {
+    "officersRecruitedLocally": "2",
+    "officerInAbsence": "Officer C",
+    "reasonOfAppointment": "Lack of available officers"
+  },
+  "electronicVotingMachine": {
+    "controlUnitsUsed": "2",
+    "controlUnitsSerial": "CU12345, CU67890",
+    "ballotUnitsUsed": "2",
+    "ballotUnitsSerial": "BU12345, BU67890"
+  },
+  "paperSeals": {
+    "sealsUsed": "3",
+    "sealsSerial": "PS12345, PS67890, PS11223"
+  },
+  "specialTags": {
+    "supplied": "5",
+    "suppliedSerial": "ST12345, ST67890, ST11223, ST33445, ST55667",
+    "used": "4",
+    "usedSerial": "ST12345, ST67890, ST11223, ST33445",
+    "unusedSerial": "ST55667"
+  },
+  "vvpat": {
+    "printersUsed": "1",
+    "printersSerial": "VPAT12345"
+  },
+  "pollingAgents": {
+    "totalCandidates": "4",
+    "agentsPresentAtStart": "3",
+    "agentsLate": "1",
+    "agentsPresentAtClose": "3"
+  },
+  "pollingStationDetails": {
+    "totalVotersAssigned": "1200",
+    "electorsAllowed": "1150",
+    "totalElectors": "1200",
+    "votesRecorded": "900",
+    "nonRecordedVotes": "50"
+  },
+  "numberOfElectorsVoted": {
+    "men": "450",
+    "women": "400",
+    "thirdGender": "50",
+    "total": "900"
+  },
+  "challengedVoteAllowed": {
+    "number": 2,
+    "allowed": true
+  },
+  "challengedRejected": {
+    "number": 1,
+    "rejected": true
+  },
+  "amountOfForfeited": "5000",
+  "numberofEDCVoters": "10",
+  "numberofOverseasVoters": "5",
+  "numberofVotersWithCompanion": "20",
+  "numberofProxyVoters": "2",
+  "numberOfTenderdVote": "1",
+  "ageDeclaration": {
+    "obtained": "Yes",
+    "refuse": "No"
+  },
+  "reasonForPollAdjournment": "Weather conditions",
+  "votesCast": [
+    {
+      "timeRange": "08:00-09:00",
+      "votes": "100"
+    },
+    {
+      "timeRange": "09:00-10:00",
+      "votes": "200"
+    }
+  ],
+  "detailsOfVisitor": [
+    {
+      "officerName": "Officer X",
+      "visitTime": "10:00 AM",
+      "description": "Inspection completed",
+      "votesPolledForm17": "100",
+      "votesPolledEVM": "900"
+    }
+  ],
+  "slipsIssued": 500,
+  "closingTime": "05:00",
+  "electoralOffences": {
+    "canvassing": true,
+    "impersonation": false,
+    "fraudulentDefacing": false,
+    "bribing": false,
+    "intimidation": true,
+    "boothCapturing": false
+  },
+  "pollInterruptions": {
+    "riot": false,
+    "openViolence": false,
+    "naturalCalamity": true,
+    "boothCapturing": false,
+    "votingMachineFailure": false,
+    "other": "Heavy rainfall"
+  },
+  "votingMachineIssues": {
+    "unlawfullyTaken": "No",
+    "lostOrDestroyed": "No",
+    "damagedOrTampered": "No"
+  },
+  "complaints": "None",
+  "breachOfLawCases": "None",
+  "irregularitiesReport": "No major issues",
+  "declarationsMade": "All declarations completed",
+  "place": "Polling Station 1",
+  "date":  {
+    "year": 2024,
+    "month": 10,
+    "day": 20
+  }
+}
 @Component({
   selector: 'app-preview',
   templateUrl: './preview.component.html',
@@ -53,7 +185,12 @@ export class PreviewComponent implements OnInit {
   date!: { year: number; month: number };
 
   pollForm!: FormGroup
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private http:HttpService,
+    private toastService:ToastService,
+    private router:Router
+  ) { }
 
   ngOnInit(): void {
     this.buidForm()
@@ -180,10 +317,8 @@ export class PreviewComponent implements OnInit {
       place: [null],
       date: [null]
     })
-
   }
 
-  
 
   get votesCastFormArray():FormArray{
     return this.pollForm.get('votesCast') as FormArray
@@ -191,5 +326,28 @@ export class PreviewComponent implements OnInit {
 
   get visitorsDetailsFormArray():FormArray{
     return this.pollForm.get('detailsOfVisitor') as FormArray
+  }
+
+
+  patchFormValue(){
+    // const {dateOfPoll,date,...restDetails} = pollDetails
+    this.pollForm.patchValue({...pollDetails})
+  }
+
+
+  submitPollingDetails(){
+    if(this.pollForm.invalid) return
+    this.http
+    .simplePost(`http://localhost:5200/poll`, this.pollForm.value)
+    .subscribe({
+      next: (resp: any) => {
+        console.log(resp);
+        this.toastService.success('Successfully saved!')
+        this.router.navigate(['/dashboard/file-upload'])
+        this.pollForm.reset()
+          },
+          error: (err) => {},
+          complete:()=> {},
+        });
   }
 }
